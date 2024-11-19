@@ -1,5 +1,5 @@
 
-// Card.js
+
 import React from 'react';
 import { MdDelete } from "react-icons/md";
 import { GiShare } from "react-icons/gi";
