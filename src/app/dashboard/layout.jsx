@@ -31,7 +31,7 @@ export default function Layout({ children }) {
             <FaYoutube className="text-xl mr-3" /> Videos
           </Link>
           <Link href="/dashboard/blogs" className="flex items-center text-gray-700 hover:text-purple-500">
-            <ImBlog className="text-xl mr-3" /> Blogs
+            <ImBlog className="text-xl mr-3" /> Blog
           </Link>
           <Link href="/dashboard/documents" className="flex items-center text-gray-700 hover:text-purple-500">
             <IoDocuments className="text-xl mr-3" /> Documents
