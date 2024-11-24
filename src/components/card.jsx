@@ -1,11 +1,9 @@
-
-
 import React from 'react';
 import { MdDelete } from "react-icons/md";
 import { GiShare } from "react-icons/gi";
 const Card = ({ title, content, tags, date }) => {
   return (
-    <div className="border rounded-lg p-4 bg-white shadow-md">
+    <div className="border rounded-lg p-4 h-80 bg-white hover:bg-slate-100  shadow-md">
       <div className="flex justify-between items-center mb-2">
         <h2 className="font-bold text-lg">{title}</h2>
         <div className="flex space-x-2">
@@ -35,5 +33,4 @@ const Card = ({ title, content, tags, date }) => {
     </div>
   );
 };
-
 export default Card;
