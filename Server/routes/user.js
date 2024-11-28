@@ -10,7 +10,7 @@ user_router.post("/createTag",VerifyToken,createTag)
 user_router.get("/getTag",VerifyToken,getAllTags)
 user_router.get("/fetchAllContent",VerifyToken,fetchAllContent)
 user_router.delete("/deleteContent/:id",VerifyToken,deleteContent)
-user_router.get("/extract-data",extractData)
+user_router.post("/extract-data",extractData)
 
 
 

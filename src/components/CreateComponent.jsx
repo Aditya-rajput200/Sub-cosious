@@ -85,13 +85,14 @@ function CreateComponent() {
                     <div>
                         <label htmlFor="link" className="block text-lg font-medium text-gray-700 mb-1">
                             Link
+                            required
                         </label>
                         <input
                             type="text"
                             id="link"
                             name="link"
                             className="w-full border border-gray-300 rounded-lg p-3 focus:ring-blue-500 focus:border-blue-500"
-                            required
+                           
                         />
                     </div>
 
@@ -103,7 +104,7 @@ function CreateComponent() {
                             id="description"
                             name="description"
                             className="w-full border border-gray-300 rounded-lg p-3 focus:ring-blue-500 focus:border-blue-500 h-24"
-                            required
+                           
                         ></textarea>
                     </div>
 
@@ -115,7 +116,7 @@ function CreateComponent() {
                             id="subtitle"
                             name="subtitle"
                             className="w-full border border-gray-300 rounded-lg p-3 focus:ring-blue-500 focus:border-blue-500 h-24"
-                            required
+                           
                         ></textarea>
                     </div>
 

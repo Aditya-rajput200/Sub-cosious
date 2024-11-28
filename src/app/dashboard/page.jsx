@@ -81,6 +81,7 @@ export default function Page() {
       title={item.title} 
       content={item.description || "No content available"} 
       tags={[item.type]} 
+      link = {item.link}
       date={new Date(item.createdAt).toLocaleDateString()} 
     />
   ))}
