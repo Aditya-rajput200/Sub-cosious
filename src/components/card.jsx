@@ -1,20 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdDelete } from "react-icons/md";
 import { GiShare } from "react-icons/gi";
-const Card = ({ title, content, tags, date }) => {
+
+const Card = ({ id, title, content, tags, date }) => {
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+  }, []);
+
+  const handelDelete = (id) => {
+    const deleteContent = async () => {
+      if (!token) {
+        alert("User not authenticated. Please log in again.");
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/v1/user/deleteContent/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.ok) {
+          alert("Content deleted successfully");
+          console.log("Content deleted");
+        } else {
+          const error = await response.json();
+          console.error("Error:", error.message);
+        }
+      } catch (error) {
+        console.error("Error deleting content:", error);
+      }
+    };
+
+    deleteContent(); 
+  };
+
   return (
-    <div className="border rounded-lg p-4 h-80 bg-white hover:bg-slate-100  shadow-md">
+    <div className="border rounded-lg p-4 h-80 bg-white hover:bg-slate-100 shadow-md">
       <div className="flex justify-between items-center mb-2">
         <h2 className="font-bold text-lg">{title}</h2>
         <div className="flex space-x-2">
           <button className="text-gray-500 hover:text-gray-700">
-          <GiShare />
-            <i className="icon-share" />
+            <GiShare />
           </button>
-          <button className="text-gray-500 hover:text-gray-700">
-          <MdDelete />
-
-            <i className="icon-delete" />
+          <button
+            className="text-gray-500 hover:text-gray-700"
+            onClick={() => handelDelete(id)}
+          >
+            <MdDelete />
           </button>
         </div>
       </div>
@@ -33,4 +74,5 @@ const Card = ({ title, content, tags, date }) => {
     </div>
   );
 };
+
 export default Card;

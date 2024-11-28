@@ -1,7 +1,8 @@
 // user can create the  
 
 const prisma = require("../lib/prisma");
-
+const axios = require('axios');
+const cheerio = require('cheerio');
 
 //create brain
 exports.createContent = async (req, res) => {
@@ -34,7 +35,7 @@ exports.createContent = async (req, res) => {
         subtitle: subtitle || null,
         user: {
           connect: {
-            id: req.user.id, // Assuming req.user contains the user's ID
+            id: req.user.id, 
           },
         },
       },
@@ -148,5 +149,42 @@ exports.deleteContent = async (req, res) =>{
         res.status(500).json({message: error.message})
     }
 }
+
+
+exports.extractData = async (req, res) => {
+  const { url } = req.body;
+
+  // Validate the URL input
+  if (!url) {
+    return res.status(400).json({ message: "Please provide a valid URL." });
+  }
+
+  try {
+    // Fetch the HTML content from the given URL
+    const { data: html } = await axios.get(url);
+
+    // Load HTML into Cheerio
+    const $ = cheerio.load(html);
+
+    // Extract metadata
+    const metadata = {
+      title: $('title').text() || '',
+      description: $('meta[name="description"]').attr('content') || '',
+      keywords: $('meta[name="keywords"]').attr('content') || '',
+      ogTitle: $('meta[property="og:title"]').attr('content') || '',
+      ogDescription: $('meta[property="og:description"]').attr('content') || '',
+      ogImage: $('meta[property="og:image"]').attr('content') || '',
+    };
+
+    // Respond with the extracted metadata
+    return res.status(200).json(metadata);
+  } catch (error) {
+    console.error("Error extracting metadata:", error.message);
+    return res.status(500).json({
+      message: "Failed to extract metadata.",
+      error: error.message,
+    });
+  }
+};
 
  

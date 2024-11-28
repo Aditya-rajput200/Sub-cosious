@@ -3,13 +3,14 @@ import { PiLinkSimpleBold } from "react-icons/pi";
 import { ImBlog } from "react-icons/im";
 import { IoDocuments, IoSettingsSharp } from "react-icons/io5";
 import Link from "next/link";
+import {averiaSerifLibre} from "../../components/ui/fonts";
 
 export default function Layout({ children }) {
   return (
     <div className="main flex p-5 h-screen">
       {/* Sidebar */}
 
-      <div className="sidebar w-1/4 bg-slate-100 rounded-md p-5">
+      <div className={`${averiaSerifLibre.className}sidebar w-1/4 bg-slate-100 rounded-md p-5`}>
         <div className="heading text-black text-center text-2xl font-mono font-bold">
           <Link href="/dashboard">
             <FaBrain className="inline-block align-middle text-2xl mr-2" />
@@ -31,7 +32,7 @@ export default function Layout({ children }) {
             <FaYoutube className="text-xl mr-3" /> Videos
           </Link>
           <Link href="/dashboard/blogs" className="flex items-center text-gray-700 hover:text-purple-500">
-            <ImBlog className="text-xl mr-3" /> Blog
+            <ImBlog className="text-xl mr-3" /> Blogs
           </Link>
           <Link href="/dashboard/documents" className="flex items-center text-gray-700 hover:text-purple-500">
             <IoDocuments className="text-xl mr-3" /> Documents
@@ -40,13 +41,17 @@ export default function Layout({ children }) {
             <FaTags className="text-xl mr-3" /> Tags
           </Link>
           <Link href="/dashboard/settings" className="flex items-center text-gray-700 hover:text-purple-500">
+            <FaBrain className="text-xl mr-3" /> Ask Ai
+          </Link>
+          <Link href="/dashboard/settings" className="flex items-center text-gray-700 hover:text-purple-500">
             <IoSettingsSharp className="text-xl mr-3" /> Settings
           </Link>
         </div>
       </div>
 
       {/* Content */}
-      <div className="leftBody p-5 w-full ml-2 bg-gray-100 rounded-md">{children}</div>
+      <div className={` p-5 w-full ml-2 bg-gray-100 rounded-md` }>{children}</div>
+   
     </div>
   );
 }
