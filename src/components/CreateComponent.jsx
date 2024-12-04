@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-
+const port = process.env.NEXT_PUBLIC_PORT
 function CreateComponent() {
     const [token, setToken] = useState(null)
 
@@ -18,7 +18,7 @@ function CreateComponent() {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/api/v1/user/createContent', {
+            const response = await fetch(`http://localhost:${port}/api/v1/user/createContent`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

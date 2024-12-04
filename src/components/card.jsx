@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { GiShare } from "react-icons/gi";
 import axios from "axios";
-
+const port = process.env.NEXT_PUBLIC_PORT
 
 const Card = ({ id, title, content, tags, date, link }) => {
   const [token, setToken] = useState(null);
@@ -24,7 +24,7 @@ const Card = ({ id, title, content, tags, date, link }) => {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/user/deleteContent/${id}`,
+          `http://localhost:${port}/api/v1/user/deleteContent/${id}`,
           {
             method: "DELETE",
             headers: {
@@ -56,7 +56,7 @@ const Card = ({ id, title, content, tags, date, link }) => {
       }
 
       setIsLoading(true); // Set loading state
-      const res = await axios.post("http://localhost:5000/api/v1/user/extract-data", {
+      const res = await axios.post(`http://localhost:${port}/api/v1/user/extract-data`, {
         url: link,
       });
 

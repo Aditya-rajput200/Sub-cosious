@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const secret = process.env.jwt_SECRET;
 require("dotenv").config();
-
+console.log(secret)
 
 // create token
 module.exports.CreateToken = async (id) => {
@@ -9,7 +9,7 @@ module.exports.CreateToken = async (id) => {
     const token =  jwt.sign({ id  }, secret);
     
     return token;
-};
+}; 
 
 
 // verify token

@@ -6,7 +6,7 @@ import { GiShare } from "react-icons/gi";
 import { FaPlus } from "react-icons/fa";
 import Link from 'next/link';
 import axios from 'axios';
-
+const port = process.env.NEXT_PUBLIC_PORT
 function page() {
   const [data, setData] = useState([]);
   const [token, setToken] = useState(null);
@@ -16,7 +16,7 @@ useEffect(() => {
   }, []);
   const result = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/v1/user/fetchAllContent", {
+      const response = await axios.get(`http://localhost:${port}/api/v1/user/fetchAllContent`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

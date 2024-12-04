@@ -3,7 +3,8 @@
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import React from 'react'
-
+const port = process.env.NEXT_PUBLIC_PORT
+console.log(port)
 function SignUp() {
     const router = useRouter()
 
@@ -14,7 +15,7 @@ function SignUp() {
         const password = e.target.password.value   
 
         try {
-            const response = await fetch("http://localhost:5000/api/v1/auth/createUser", {
+            const response = await fetch(`http://localhost:${port}/api/v1/auth/createUser`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

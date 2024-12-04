@@ -8,7 +8,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 
-
+const port = process.env.NEXT_PUBLIC_PORT
+console.log(port)
 
 export default function Page() {
   const [data, setData] = useState([]);
@@ -21,7 +22,7 @@ export default function Page() {
 
   const result = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/v1/user/fetchAllContent", {
+      const response = await axios.get(`http://localhost:${port}/api/v1/user/fetchAllContent`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
