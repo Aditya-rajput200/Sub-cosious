@@ -40,7 +40,7 @@ export default function Layout({ children }) {
           <Link href="/dashboard/tags" className="flex items-center text-gray-700 hover:text-purple-500">
             <FaTags className="text-xl mr-3" /> Tags
           </Link>
-          <Link href="/dashboard/settings" className="flex items-center text-gray-700 hover:text-purple-500">
+          <Link href="/dashboard/Ask-Brain" className="flex items-center text-gray-700 hover:text-purple-500">
             <FaBrain className="text-xl mr-3" /> Ask Ai
           </Link>
           <Link href="/dashboard/settings" className="flex items-center text-gray-700 hover:text-purple-500">

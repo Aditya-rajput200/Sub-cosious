@@ -53,6 +53,15 @@ model Link {
   user      User     @relation(fields: [userId], references: [id])
 
 }
+model Brain {
+  id          Int      @id @default(autoincrement()) 
+  title       String   
+  description String  
+  embedding   Unsupported("vector(768)") // Vector column for embeddings (size 768)
+
+  @@map("brain") 
+}
+
 
 enum TypesEnum {
   twitter

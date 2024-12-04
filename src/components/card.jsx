@@ -87,14 +87,14 @@ const Card = ({ id, title, content, tags, date, link }) => {
       </div>
       <p className="text-gray-700 mb-4">{content}</p>
       <div className="flex space-x-2 mb-2">
-        {tags.map((tag, index) => (
+        {/* {tags.map((tag, index) => (
           <span
             key={index}
             className="bg-blue-100 text-purple-600 rounded-full px-2 py-1 text-sm"
           >
             #{tag}
           </span>
-        ))}
+        ))} */}
       </div>
 
      

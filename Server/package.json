@@ -13,6 +13,8 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^5.22.0",
+    "@tensorflow/tfjs-node": "^4.22.0",
+    "@tuesdaycrowd/sentence-transformers": "^1.0.1",
     "axios": "^1.7.8",
     "cheerio": "^1.0.0",
     "cors": "^2.8.5",
