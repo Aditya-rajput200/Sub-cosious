@@ -2,72 +2,69 @@ import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { GiShare } from "react-icons/gi";
 import axios from "axios";
+
 const port = process.env.NEXT_PUBLIC_PORT
 
 const Card = ({ id, title, content, tags, date, link }) => {
-  const [token, setToken] = useState(null);
-  const [metadata, setMetaData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+
+
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    setToken(storedToken);
-    extractMeta();
+
+    // extractMeta();
   }, []);
 
-  const handelDelete = (id) => {
-    const deleteContent = async () => {
-      if (!token) {
-        alert("User not authenticated. Please log in again.");
-        return;
-      }
+  // const handelDelete = (id) => {
+  //   const deleteContent = async () => {
+    
+  //       alert("User not authenticated. Please log in again.");
+  //       return;
+    
+  //     try {
+    
 
-      try {
-        const response = await fetch(
-          `http://localhost:${port}/api/v1/user/deleteContent/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+  //       const response  = await axios.delete("http://localhost:${port}/api/v1/user/deleteContent/${id}",{
+  //         headers: {
+  //         "Content-Type" : "application/json"
+  //         },withCredentials: true,
+  //       });
 
-        if (response.ok) {
-          alert("Content deleted successfully");
-          console.log("Content deleted");
-        } else {
-          const error = await response.json();
-          console.error("Error:", error.message);
-        }
-      } catch (error) {
-        console.error("Error deleting content:", error);
-      }
-    };
+  //       if (response.ok) {
+  //         alert("Content deleted successfully");
 
-    deleteContent();
-  };
+  //         console.log("Content deleted");
+  //       } else {
+  //         const error = await response.json();
+  //         console.error("Error:", error.message);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error deleting content:", error);
+  //     }
+  //   };
 
-  const extractMeta = async () => {
-    try {
-      if (!link) {
-        console.error("Link is not provided");
-        return;
-      }
+  //   deleteContent();
+  // };
 
-      setIsLoading(true); // Set loading state
-      const res = await axios.post(`http://localhost:${port}/api/v1/user/extract-data`, {
-        url: link,
-      });
+  // const extractMeta = async () => {
+  //   try {
+  //     if (!link) {
+  //       console.error("Link is not provided");
+  //       return;
+  //     }
 
-      setMetaData(res.data);
-      console.log("Metadata fetched:", res.data);
-    } catch (error) {
-      console.error("Error fetching metadata:", error.response?.data || error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  //     setIsLoading(true); // Set loading state
+  //     const res = await axios.post(`http://localhost:${port}/api/v1/user/extract-data`, {
+  //       url: link,
+  //     });
+
+  //     setMetaData(res.data);
+  //     console.log("Metadata fetched:", res.data);
+  //   } catch (error) {
+  //     console.error("Error fetching metadata:", error.response?.data || error.message);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   return (
     <div className="border rounded-lg p-4 bg-white hover:bg-slate-100 shadow-md">
@@ -79,7 +76,7 @@ const Card = ({ id, title, content, tags, date, link }) => {
           </button>
           <button
             className="text-gray-500 hover:text-gray-700"
-            onClick={() => handelDelete(id)}
+            // onClick={() => handelDelete(id)}
           >
             <MdDelete />
           </button>

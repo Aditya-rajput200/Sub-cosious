@@ -1,29 +1,23 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import React from 'react'
 const port = process.env.NEXT_PUBLIC_PORT
 function CreateComponent() {
-    const [token, setToken] = useState(null)
+    
 
-    useEffect(() => {
-        setToken(localStorage.getItem('token'))
-    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        if (!token) {
-            alert('User is not authenticated. Please log in.')
-            return
-        }
+    
 
         try {
-            const response = await fetch(`http://localhost:${port}/api/v1/user/createContent`, {
-                method: 'POST',
+            const response = await axios.post(`http://localhost:${port}/api/v1/user/createContent`, {
+         
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
+                    
+                },withCredentials: true,
                 body: JSON.stringify({
                     title: e.target.title.value,
                     type: e.target.type.value,

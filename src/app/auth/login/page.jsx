@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import React from 'react'
+
 const port = process.env.NEXT_PUBLIC_PORT
 function Login() {
     const router = useRouter()
@@ -28,8 +29,8 @@ function Login() {
 
             if (response.ok) {
                 const data = await response.json()
-                console.log(data)
-                localStorage.setItem("token", data)
+                
+            
                 router.push("/dashboard") 
             } else {  
                 alert("Invalid Credentials")

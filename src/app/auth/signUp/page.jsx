@@ -68,6 +68,8 @@ function SignUp() {
                     />
                     <Button type="submit">Sign Up</Button>
                 </form>
+
+              
             </div>
         </>
     )

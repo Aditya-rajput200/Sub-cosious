@@ -1,35 +1,44 @@
 const jwt = require("jsonwebtoken");
 const secret = process.env.jwt_SECRET;
+
 require("dotenv").config();
-console.log(secret)
 
 // create token
 module.exports.CreateToken = async (id) => {
+  const token = jwt.sign(id , secret, { expiresIn: "1h" });
 
-    const token =  jwt.sign({ id  }, secret);
-    
-    return token;
-}; 
-
+  return token;
+};
 
 // verify token
-module.exports.VerifyToken = (req, res, next) => {
+module.exports.isAuthenticate = async(req, res, next) =>{
+   try {
+    const token = req.cookies.authToken ;
+     console.log("Deepak kalal",token)
+ 
+    // check the token 
+    if(!token){
+        return res.status(401).json({
+            message: "Unauthorised Please check the token"
+        })
 
-  let token = req.headers.authorization 
-              ? req.headers.authorization.split(" ")[1] // Extract Bearer token
-              : req.body.token || req.query.token;
+    }
+   
+   const decode= await jwt.verify(token,secret)
 
-  // Check if token exists 
-  if (!token) {
-      return res.status(401).json({ message: "You are not authorized to access this route. Token missing." });
-  }
 
-  try {
-      // Verify the token
-      const decoded = jwt.verify(token, secret);
-      req.user = decoded.id;
-      next(); 
-  } catch (error) {
-      return res.status(401).json({ message: error.message || "Invalid or expired token" });
-  }
-};
+   if (!decode){
+    return res.status(500).json("Failed to decode the token")
+   }
+   
+   req.user = decode;
+
+
+   
+   next()
+   } catch (error) {
+    res.status(400).json("Failed to veiry the user ")
+    
+   }
+
+}
