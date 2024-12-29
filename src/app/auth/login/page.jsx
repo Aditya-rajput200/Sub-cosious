@@ -17,6 +17,7 @@ function Login() {
         try {
             const response = await fetch(`http://localhost:${port}/api/v1/auth/loginUser`, {
                 method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json",
                 },

@@ -6,12 +6,12 @@ import axios from "axios";
 const port = process.env.NEXT_PUBLIC_PORT
 
 const Card = ({ id, title, content, tags, date, link }) => {
-
-
+  const [isLoading, setIsLoading]  = useState(false)
+  const [metadata, setMetaData]  = useState([])
 
   useEffect(() => {
 
-    // extractMeta();
+    extractMeta();
   }, []);
 
   // const handelDelete = (id) => {
@@ -45,29 +45,30 @@ const Card = ({ id, title, content, tags, date, link }) => {
   //   deleteContent();
   // };
 
-  // const extractMeta = async () => {
-  //   try {
-  //     if (!link) {
-  //       console.error("Link is not provided");
-  //       return;
-  //     }
+  const extractMeta = async () => {
+    try {
+      if (!link) {
+        console.error("Link is not provided");
+        return;
+      }
 
-  //     setIsLoading(true); // Set loading state
-  //     const res = await axios.post(`http://localhost:${port}/api/v1/user/extract-data`, {
-  //       url: link,
-  //     });
+      setIsLoading(true); // Set loading state
+      const res = await axios.post(`http://localhost:${port}/api/v1/user/extract-data`, {
+        url: link,
+      });
 
-  //     setMetaData(res.data);
-  //     console.log("Metadata fetched:", res.data);
-  //   } catch (error) {
-  //     console.error("Error fetching metadata:", error.response?.data || error.message);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+      setMetaData(res.data);
+      console.log("Metadata fetched:", res.data);
+    } catch (error) {
+      console.error("Error fetching metadata:", error.response?.data || error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="border rounded-lg p-4 bg-white hover:bg-slate-100 shadow-md">
+      
       <div className="flex justify-between items-center mb-2">
         <h2 className="font-bold text-lg">{title}</h2>
         <div className="flex space-x-2">

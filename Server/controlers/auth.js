@@ -64,6 +64,8 @@ exports.LoginUser = async (req, res) => {
         maxAge: 3600000,
         httpOnly: true,
         //secure: true   only work in production whare https is going on but not in http of localhost
+        sameSite: "Lax",
+        secure: false,
       })
       .json({
         success:true,

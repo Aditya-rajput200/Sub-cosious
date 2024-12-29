@@ -10,7 +10,7 @@ user_router.post("/createTag",isAuthenticate,createTag)
 user_router.get("/getTag",isAuthenticate,getAllTags)
 user_router.get("/fetchAllContent",isAuthenticate,fetchAllContent)
 user_router.delete("/deleteContent/:id",isAuthenticate,deleteContent)
-user_router.post("/extract-data",isAuthenticate,extractData)
+user_router.post("/extract-data",extractData)
 
 
 
