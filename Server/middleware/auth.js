@@ -14,14 +14,14 @@ module.exports.CreateToken = async (id) => {
 module.exports.isAuthenticate = async(req, res, next) =>{
    try {
     const token = req.cookies.authToken ;
-     console.log("Deepak kalal",token)
+
  
     // check the token 
     if(!token){
         return res.status(401).json({
             message: "Unauthorised Please check the token"
         })
-
+    
     }
    
    const decode= await jwt.verify(token,secret)

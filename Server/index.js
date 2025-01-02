@@ -18,6 +18,9 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+// valadating the auth 
+app.get()
+
 // auth user
 app.use("/api/v1/auth", auth_router);
 //user
