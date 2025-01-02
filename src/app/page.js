@@ -10,7 +10,7 @@ function Page() {
 
 useEffect(()=>{
 const cookies = document.cookie;
-const isAuthenticate = cookies.split('; ').find((row)=>row.startsWith('authToken'))
+const isAuthenticate = cookies.split(';  ').find((row)=>row.startsWith('authToken'))
 
 if(!isAuthenticate){
   router.push('/auth/login')
